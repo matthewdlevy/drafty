@@ -1,4 +1,4 @@
-You can get the latest Drafty build at [https://bitbucket.org/matthewdlevy/drafty](https://bitbucket.org/matthewdlevy/drafty)
+You can get the latest Drafty build at [https://github.com/matthewdlevy/drafty](https://github.com/matthewdlevy/drafty)
 
 You can run Drafty out of the box by just fetching the project and putting these files in any accessible web server:
 + index.html

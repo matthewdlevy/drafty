@@ -23,7 +23,7 @@ Drafty uses IAM credentials and policies to control access to the buckets. You w
 
 ---
 ### Download Drafty
-Drafty is currently available at its [own repository](https://bitbucket.org/matthewdlevy/drafty).
+Drafty is currently available at its [own repository](https://github.com/matthewdlevy/drafty).
 
 ---
 #### Contact
