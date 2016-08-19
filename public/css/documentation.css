@@ -1,0 +1,31 @@
+body {
+  background: #3C6F88;
+}
+
+#wrapper {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  padding: 20px 2%;
+  background: white;
+}
+
+.nav, h1, h2, h3, h4 {
+  font-family: "Ubuntu", Arial, sans-serif;
+}
+
+.navbar-default .navbar-brand {
+  text-transform: uppercase;
+  color: #3C6F88;
+  height: auto;
+  padding: 10px 15px;
+}
+
+nav .fa-caret-down {
+  margin-left: 6px;
+}
+
+footer {
+  text-align: center;
+  margin: 30px auto;
+}
+
+/*# sourceMappingURL=documentation.css.map */

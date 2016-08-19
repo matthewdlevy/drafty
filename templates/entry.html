@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>{{title}} :: Drafty - Documentation</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <link href="/.css/documentation.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+  <script>var KEY = '{{&key}}';</script>
+  <script>var BUCKET = '{{&bucket}}';</script>
+  <script>var ENDPOINT = '{{&endpoint}}';</script>
+
+  {{{{raw-helper}}}}
+    <script id="nav-template" type="text/x-handlebars-template">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-bars"></i>
+          </button>
+          <a class="navbar-brand" href="/"><i class="fa fa-pencil"></i> Drafty</a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav nav-pills">
+          {{#nav}}
+            {{#unless index}}
+              <li class="{{#if children}}dropdown{{/if}}">
+                <a href="{{#if link}}/{{link}}{{/if}}" {{#if children}}class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{{/if}}>{{label}}{{#if children}}<i class="fa fa-caret-down"></i>{{/if}}</a>
+                {{#if children}}
+                  <ul class="dropdown-menu">
+                    {{#children}}
+                      <li class="{{#if children}}has-children{{/if}}">
+                        {{#if link}}
+                          <a href="/{{link}}">{{label}}</a>
+                        {{else}}
+                          <span>{{label}}</span>
+                        {{/if}}
+                      </li>
+                    {{/children}}
+                  </ul>
+                {{/if}}
+              </li>
+              {{/unless}}
+          {{/nav}}
+          </ul>
+      </div>
+    </div>
+    </script>
+  {{{{/raw-helper}}}}
+</head>
+  <body>
+    <div id="wrapper" class="container">
+      <!-- Menu gets loaded dynamically -->
+      <nav id="menu" class="nav navbar-default"></nav>
+
+      <article id="entry">
+        <div class="title">
+          <h1>{{title}}</h1>
+          <p>Last edited on <span class="last-edited">{{modified}}</span></p>
+        </div>
+
+        <!-- The converted markdown content. -->
+        <div class="content">{{&body}}</div>
+
+      </article>
+    </div>
+
+    <footer class="container">
+      <div class="col-lg-12 center">&copy; 2016 Matthew Levy</div>
+    </footer>
+
+    <script>
+      (function (window, document) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+          if (request.readyState === 4 && request.status === 200) {
+            requestCallback(JSON.parse(request.responseText));
+          }
+        };
+
+        request.open("GET", "{{&endpoint}}{{dataKey}}");
+        request.send();
+
+        // Retrieve the json file with menu data
+        function requestCallback(data) {
+          var parts = KEY.split('/');
+          var breadcrumbs = [];
+
+          // Use the menu json to build a tree list
+        //  buildFromSegments(data, breadcrumbs, parts);
+
+          var navTemplate = document.getElementById('nav-template').innerHTML;
+          var nav = Handlebars.compile(navTemplate);
+
+          var navContext = {
+            nav: data,
+            endpoint: ENDPOINT
+          };
+          var navHtml = nav(navContext);
+          document.getElementById('menu').innerHTML = navHtml;
+        };
+      }(this, this.document));
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

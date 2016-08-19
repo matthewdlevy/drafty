@@ -1,0 +1,33 @@
+{
+  "name": "drafty",
+  "homepage": "https://bitbucket.org/matthewdlevy/drafty/overview",
+  "version": "0.0.2",
+  "description": "Forked version of dodgercms to add WYSIWYG and other publishing niceties.",
+  "keywords": ["markdown", "cms", "amazon", "s3"],
+  "license" : "MIT",
+  "author": {
+    "name": "Matthew Levy",
+    "email": "matthewdlevy@gmail.com",
+    "url" : "http://www.fivemilerun.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org/matthewdlevy/drafty.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "load-grunt-tasks": "~3.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-cssmin": "~0.12.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-handlebars": "~1.0.0",
+    "grunt-mocha": "~0.4.6",
+    "grunt-aws-s3": "latest",
+    "grunt-sass": "^1.2.0",
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1",
+    "sinon": "~1.14.1"
+  }
+}

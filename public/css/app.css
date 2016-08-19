@@ -1,0 +1,102 @@
+/*
+ * -- BASE STYLES --
+ */
+/*
+ * MDL Additions
+ */
+.nav, .btn {
+  font-family: "Ubuntu", Arial, sans-serif;
+}
+
+* {
+  letter-spacing: initial !important;
+}
+
+label {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+label.pure-button {
+  width: auto;
+  font-weight: normal;
+}
+
+#metacontent {
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 0.9em;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#metacontent label {
+  margin-top: 6px;
+}
+
+.button-xsmall {
+  font-size: 0.7em;
+  padding: 4px;
+}
+
+.multiples > div {
+  margin: 6px 0;
+}
+
+.multiples > div button {
+  margin-left: 6px;
+}
+
+.recede {
+  color: #888888;
+}
+
+.band + .band {
+  border-top: 1px solid #cccccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+#entry-form.pure-form input[type=text][disabled] {
+  /* These are used in the partials like labels */
+  background-color: initial;
+  color: #333333;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: text;
+}
+
+.input-group + .input-group {
+  margin-top: 10px;
+}
+
+#content-body-container {
+  padding-bottom: 60px;
+}
+
+#content-body-container .band br {
+  content: "";
+  display: block;
+  height: 1em;
+}
+
+.content-footer-controls {
+  padding: 6px 20%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.4);
+  background: rgba(10, 100, 200, 0.9);
+}
+
+#list {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: -20px;
+}
+
+/*# sourceMappingURL=app.css.map */
