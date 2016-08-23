@@ -32,3 +32,23 @@ If you're running Drafty in S3 as well, deploy the change to your cloud instance
 `$ grunt deploy`
 
 To see your new template in the chooser, refresh Drafty in your browser. To propagate a template change to pages that have already been created and published, click on the "Publish All Files" link in Drafty's main menu, after you've refreshed the browser (remember Drafty runs completely in Javascript within your browser, so any changes to the build will require a page refresh to load the newly compiled Javascript).
+
+### Templates with External Files
+Templates can make use of files beyond the basic HTML of the Handlebars templates. To add files like CSS, Javascript, images, etc to your site, simply add files to the /templates folder, using any folder structure appropriate for your project. If you want to leverage Sass and subfolders, you'll need to update the Gruntfile.js with a build definition in the sass task:
+
+                {
+                  expand: true,
+                  cwd: 'templates/subfolder/css/sass',
+                  src: ['**/*.{scss,sass}'],
+                  dest: 'templates/subfolder/css',
+                  ext: '.css'
+                }
+
+
+All of the files in the templates folder can be pushed to your site by running
+
+`$ grunt deploy-templates --site your-site-bucket`
+
+Replace "your-site-bucket" with the name of your site's bucket. The files will then be available at http://your-site/.templates/...
+
+*Notice the dot (.) in front of "templates" in the URL path (this keeps the files out of Drafty's index of site folders).*
