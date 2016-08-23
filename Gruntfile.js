@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
-
   //import globals
   eval(grunt.file.read('public/js/app-globals.js'));
 
@@ -46,9 +45,9 @@ module.exports = function(grunt) {
         options: {
             sourceMap: true,
             relativeAssets: false,
-            outputStyle: 'expanded',
-            sassDir: 'public/css/sass',
-            cssDir: 'public/css'
+            outputStyle: 'expanded'//,
+            //sassDir: 'public/css/sass',
+            //cssDir: 'public/css'
         },
         build: {
             files: [{
@@ -56,6 +55,13 @@ module.exports = function(grunt) {
                 cwd: 'public/css/sass',
                 src: ['**/*.{scss,sass}'],
                 dest: 'public/css',
+                ext: '.css'
+            },
+            {
+                expand: true,
+                cwd: 'templates/css/sass',
+                src: ['**/*.{scss,sass}'],
+                dest: 'templates/css',
                 ext: '.css'
             }]
         }
@@ -108,6 +114,7 @@ module.exports = function(grunt) {
         region: 'us-east-1',
         debug: false
       },
+      //deploy drafty to the cloud
       production: {
         options: {
             bucket: '<%= aws.bucket %>'
@@ -116,10 +123,23 @@ module.exports = function(grunt) {
           {action: 'upload', expand: true, cwd: '', src: ['*.html'], dest: '/'},
           {action: 'upload', expand: true, cwd: 'public/', src: ['**'], dest: 'public/'}
         ]
+      },
+      templates: {
+        options: {
+          bucket: '<%= grunt.option("site") %>',
+          debug: false
+        },
+        files: [{action: 'upload', expand: true, cwd: 'templates/', src: ['**'], dest: '.templates/'}]
       }
     }
   });
 
   grunt.registerTask('default', ['handlebars', 'mocha', 'jshint', 'sass', 'cssmin', 'uglify']);
   grunt.registerTask('deploy', ['default', 'aws_s3:production']);
+
+  // Deploy template files to the sites for use of CSS, images, etc.
+  // specify the site when executing the task:
+  //   $ grunt deploy-templates --site dev-site
+  // If you wish to use this, the CMS admin IAM role will need access to the site buckets.
+  grunt.registerTask('deploy-templates', ['default', 'aws_s3:templates']);
 };
