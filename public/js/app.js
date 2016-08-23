@@ -130,6 +130,9 @@ $(function() {
     _.each(DATATYPES, function(element){
       $('#new-entry-data-types').append('<li><a data-value="'+element.id+'">'+element.name+'</a></li>');
     });
+
+    //fade in the main menu following a site selection
+    $('#nav .nav:hidden').fadeIn();
   }
 
   /**
@@ -1069,22 +1072,7 @@ $(function() {
     });
   }
 
-  //Event listener to publish all files
-  $('.publish-all-link').click(function(event){
-    dodgercms.s3.listObjects(DATA_BUCKET, function(err, data) {
-      async.each(data.Contents, quickPublishEntry, function(err){
-          if(err){
-            alert('Error: '+err);
-          }
-          else {
-            alert('Publish operation is complete.');
-          }
-      });
-    });
-
-  });
-
-  //TinyMCE
+    //TinyMCE
   function removeTinyMCE() {
     $('.wysiwyg').each(function(){
         tinymce.execCommand('mceRemoveEditor',true,$(this).attr('id'));
@@ -1184,6 +1172,20 @@ $(function() {
           rebuildTree();
           //$('#main').data('key', key);
         }
+      });
+    });
+
+    //Event listener to publish all files
+    $('.publish-all-link').click(function(event){
+      dodgercms.s3.listObjects(DATA_BUCKET, function(err, data) {
+        async.each(data.Contents, quickPublishEntry, function(err){
+            if(err){
+              alert('Error: '+err);
+            }
+            else {
+              alert('Publish operation is complete.');
+            }
+        });
       });
     });
 

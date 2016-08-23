@@ -1,9 +1,14 @@
 /*
  * -- BASE STYLES --
  */
-/*
- * MDL Additions
- */
+#nav .nav {
+  display: none;
+}
+
+#nav .nav a {
+  cursor: pointer;
+}
+
 .nav, .btn {
   font-family: "Ubuntu", Arial, sans-serif;
 }
