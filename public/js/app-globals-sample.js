@@ -7,7 +7,8 @@ var SITES = [
             site_bucket: 'site-one-site',
             aws_region: 'us-east-1',
             datatypes: [],
-            templates: []
+            templates: [],
+            menu_template: null
         }
     ];
 
@@ -24,6 +25,8 @@ var DEFAULT_TEMPLATES = [ {id: 'templates/entry.html', name: 'Generic Page'} ];
 var TEMPLATES = DEFAULT_TEMPLATES;
 
 var PARTIALS_PATH = 'public/js/data-types/partials/';
+var DATA_KEY = '.dodgercms/data.json'; //contains folder structure reference
+var MENU_TEMPLATE = 'templates/menu.html'; //the menu template
 
 var DATA_BUCKET;
 var ASSETS_BUCKET;

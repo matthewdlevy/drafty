@@ -41,6 +41,8 @@
     "DEFAULT_DATATYPES": true,
     "TEMPLATES": true,
     "DEFAULT_TEMPLATES": true,
-    "PARTIALS_PATH": true
+    "PARTIALS_PATH": true,
+    "DATA_KEY": true,
+    "MENU_TEMPLATE": true
   }
 }

@@ -89,6 +89,9 @@ $(function() {
           });
       }
 
+      if(site.menu_template) {
+        MENU_TEMPLATE = site.menu_template;
+      }
 
 
       initialize();
@@ -126,7 +129,7 @@ $(function() {
     dodgercms.s3.init();
     rebuildTree();
     $('#tree').show();
-    
+
     //add datatypes to the main menu
     $('#new-entry-data-types').empty();
     _.each(DATATYPES, function(element){
@@ -1191,18 +1194,6 @@ $(function() {
       event.preventDefault();
       newEntry(null, $(this).data('value'));
       $('#new-entry-data-types').fadeOut();
-    });
-
-    //event listener for republishing the Menu
-    $('.publish-menu-link').click(function(){
-      dodgercms.entry.menu(SITE_BUCKET, SITE_ENDPOINT, function(err) {
-        if (err) {
-          errorHandler(err);
-        } else {
-          rebuildTree();
-          //$('#main').data('key', key);
-        }
-      });
     });
 
     //Event listener to publish all files

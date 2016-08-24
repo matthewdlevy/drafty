@@ -45,6 +45,8 @@ See [Drafty Documentation](http://www.draftycms.com/) for more information.
 
 ### Added support for radio elements in data type templates
 
+### Changed main menu approach to build at publish within the page files
+
 ### Added support for multiple template types
 - Just add the template file in the templates directory and add the path in the Gruntfile.js under handlebars.files: "public/js/dist/entry.min.js": ["templates/entry.html", "templates/home.html"]
 - Requires adding <ExposeHeader>x-amz-meta-template</ExposeHeader> to the markdown S3 bucket CORS policy

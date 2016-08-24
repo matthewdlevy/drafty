@@ -1,0 +1,22 @@
+<ul class="nav nav-pills">
+{{#nav}}
+  {{#unless index}}
+    <li class="{{#if children}}dropdown{{/if}}">
+      <a href="{{#if link}}/{{link}}{{/if}}" {{#if children}}class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{{/if}}>{{label}}{{#if children}}<i class="fa fa-caret-down"></i>{{/if}}</a>
+      {{#if children}}
+        <ul class="dropdown-menu">
+          {{#children}}
+            <li class="{{#if children}}has-children{{/if}}">
+              {{#if link}}
+                <a href="/{{link}}">{{label}}</a>
+              {{else}}
+                <span>{{label}}</span>
+              {{/if}}
+            </li>
+          {{/children}}
+        </ul>
+      {{/if}}
+    </li>
+    {{/unless}}
+{{/nav}}
+</ul>

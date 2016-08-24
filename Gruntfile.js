@@ -16,7 +16,12 @@ module.exports = function(grunt) {
         grunt.log.write("\n-----\nAdding template " + SITES[i].templates[t].id + '\n');
       }
     }
+    if(SITES[i].menu_template){
+      template_paths.push(SITES[i].menu_template);
+    }
   }
+  //add the default menu template
+  template_paths.push(MENU_TEMPLATE);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -59,9 +64,9 @@ module.exports = function(grunt) {
             },
             {
                 expand: true,
-                cwd: 'templates/css/sass',
+                cwd: 'templates/vb-app-ui/css/sass',
                 src: ['**/*.{scss,sass}'],
-                dest: 'templates/css',
+                dest: 'templates/vb-app-ui/css',
                 ext: '.css'
             }]
         }
@@ -139,7 +144,7 @@ module.exports = function(grunt) {
 
   // Deploy template files to the sites for use of CSS, images, etc.
   // specify the site when executing the task:
-  //   $ grunt deploy-templates --site dev-site
+  //   $ grunt deploy-templates --site vb-dev-site
   // If you wish to use this, the CMS admin IAM role will need access to the site buckets.
   grunt.registerTask('deploy-templates', ['default', 'aws_s3:templates']);
 };
