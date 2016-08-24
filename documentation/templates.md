@@ -52,3 +52,20 @@ All of the files in the templates folder can be pushed to your site by running
 Replace "your-site-bucket" with the name of your site's bucket. The files will then be available at http://your-site/.templates/...
 
 *Notice the dot (.) in front of "templates" in the URL path (this keeps the files out of Drafty's index of site folders).*
+
+---
+## Menus
+Drafty generates site menus based on a specific menu Handlebars template. This template is located at *templates/menu.html* by default, and can be changed based on your specific needs updating the MENU_TEMPLATE global in the *public/js/app-globals.js* file. Currently only one menu template is supported per Drafty site. To change the menu template for a given site, add a "menu_template" parameter to the site object in *public/js/app-globals.js*, equal to the path of your menu template:
+
+            {
+              name: 'Site Number One',
+              markdown_bucket: 'site-one-markdown',
+              assets_bucket: 'site-one-assets',
+              site_bucket: 'site-one-site',
+              aws_region: 'us-east-1',
+              datatypes: [],
+              templates: [],
+              menu_template: 'templates/your-sub-ui/menu.html'
+        }
+
+By default, a site structure file is generated whenever a page is added, moved, or deleted. When pages are published, they reference this file (located at http://your-site/.dodgercms/data.json) and build the menu. Because the menus are updated only when a page is published, it is recommended that you "Publish All Files" following a page deletion, creation, or move.
