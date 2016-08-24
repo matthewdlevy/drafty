@@ -141,11 +141,32 @@ $(function() {
    * @param {Object} err The error object from the response
   */
   function errorHandler(err) {
-    var code = err.code;
-
-    // Check if the token is expired
-    if (code === 'ExpiredToken') {
-      window.location.replace(window.location.href.replace('index.html', 'login.html'));
+    if(err.code == 'CredentialsError'){
+      //prompt for login credentials
+      $.blockUI({
+        css: {
+          'border': 'none',
+          'font-size': '90%',
+          'padding': '15px',
+          'backgroundColor': 'rgba(0,0,0,0.5)',
+          '-webkit-border-radius': '10px',
+          '-moz-border-radius': '10px',
+        },
+        message: '<form id="application-login" autocomplete="off" class="well">'+
+          '<p>Your session expired. Please re-submit your login credentials.</p>'+
+          '<fieldset>'+
+            '<div class="input-group">'+
+              '<input name="user" placeholder="Username" class="form-control" />'+
+            '</div>'+
+            '<div class="input-group">'+
+              '<input name="pw" type="password" placeholder="Password" class="form-control" />'+
+            '</div>'+
+            '<div class="input-group">'+
+              '<button type="submit" class="btn btn-primary">Login</button>'+
+            '</div>'+
+          '</fieldset>'+
+        '</form>'
+      });
     }
   }
 
@@ -1337,6 +1358,60 @@ $(function() {
             save(event);
           }
         }
+      });
+
+      // Event handler for the login form
+      $('body').on('submit', '#application-login', function(e){
+        e.preventDefault();
+
+        AWSCognito.config.region = AWS_REGION; //This is required to derive the endpoint
+        AWSCognito.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: ID_POOL_ID
+        });
+        // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
+        AWSCognito.config.update({accessKeyId: 'test', secretAccessKey: 'test'});
+
+
+        $('#application-login *').attr('disabled', 'disabled');
+
+        var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool({
+            UserPoolId : POOL_ID,
+            ClientId : CLIENT_ID
+        });
+        var authenticationData = {
+            Username : $('#application-login input[name="user"]').val(),
+            Password : $('#application-login input[name="pw"]').val(),
+        };
+        var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+        var userData = {
+            Username : $('#application-login input[name="user"]').val(),
+            Pool : userPool
+        };
+        var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+        cognitoUser.authenticateUser(authenticationDetails, {
+            onSuccess: function (result) {
+                // Authenticated; create a session token
+                //set the token in sessionStorage
+                sessionStorage.setItem('cognito-token', result.getIdToken().getJwtToken());
+
+                var creds = {};
+                creds['cognito-idp.' + AWS_REGION + '.amazonaws.com/' + POOL_ID] = sessionStorage.getItem('cognito-token');
+                AWS.config.update({
+                  credentials: new AWS.CognitoIdentityCredentials({
+                      IdentityPoolId : ID_POOL_ID, // your identity pool id here
+                      Logins : creds
+                  })
+                });
+                $.unblockUI();
+            },
+
+            onFailure: function(err) {
+                alert(err);
+                $('#application-login *').removeAttr('disabled');
+                // $.unblockUI();
+            },
+
+        });
       });
   }
 });
