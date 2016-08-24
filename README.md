@@ -1,5 +1,5 @@
 # Drafty - a fork of DodgerCMS supporting WYSIWYG and Data Types
-See [Drafty Documentation](http://drafty-doc-site.s3-website-us-east-1.amazonaws.com/) for more information.
+See [Drafty Documentation](http://www.draftycms.com/) for more information.
 
 ## Modifications
 ================
