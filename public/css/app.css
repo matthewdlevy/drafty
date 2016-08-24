@@ -104,4 +104,58 @@ label.pure-button {
   margin-top: -20px;
 }
 
+#list button.toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #nav .nav > li {
+    display: inline-block;
+    font-size: 0.85em;
+    padding: 4px 10px;
+  }
+  #nav .nav > li > a {
+    padding: 0 4px;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+  .navbar-brand {
+    float: none;
+    padding: 4px 12px;
+    font-size: 15px;
+    height: auto;
+  }
+  .navbar {
+    min-height: 0;
+  }
+  h1, h2, h3 {
+    font-size: 1.25em;
+  }
+  h4, h5, h6 {
+    font-size: 1.05em;
+  }
+  #main .content-controls {
+    text-align: right;
+  }
+  #main .content-controls button {
+    margin: 10px auto;
+  }
+  #metacontent *,
+  .pure-form select, .pure-form input[type="text"] {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+  #list button.toggle {
+    display: block;
+    float: right;
+  }
+  .blockUI.blockMsg {
+    width: 96% !important;
+    left: 2% !important;
+    top: 10% !important;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */

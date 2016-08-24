@@ -1,3 +1,15 @@
+$breakpoints-xxs: 290px;
+$breakpoints-xs: 365px;
+$breakpoints-sm: 585px;
+$breakpoints-md: 768px;
+$breakpoints-xsmd: 840px;
+$breakpoints-xmd: 991px;
+$breakpoints-lg: 1000px;
+$breakpoints-xl: 1300px;
+$breakpoints-xxl: 1500px;
+$breakpoints-xxxl: 1800px;
+
+
 /*
  * -- BASE STYLES --
  */
@@ -103,3 +115,9 @@
   padding-bottom: 20px;
   margin-top: -20px;
 }
+
+#list button.toggle {
+  display: none;
+}
+
+@import "_responsive";

@@ -125,7 +125,8 @@ $(function() {
     removeTinyMCE();
     dodgercms.s3.init();
     rebuildTree();
-
+    $('#tree').show();
+    
     //add datatypes to the main menu
     $('#new-entry-data-types').empty();
     _.each(DATATYPES, function(element){
@@ -1423,6 +1424,11 @@ $(function() {
             },
 
         });
+      });
+
+      //tree toggle button for mobile
+      $('#list .toggle').click(function(){
+        $($(this).data('toggle')).slideToggle();
       });
   }
 });
