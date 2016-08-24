@@ -95,6 +95,8 @@ $(function() {
       $('#site-selector ul').fadeOut(250);
       $('#main').empty().data('key', null);
     });
+
+    setEvents(); //only call this once
     return;
   }
 
@@ -120,10 +122,9 @@ $(function() {
       return options.fn();
     });
 
-    // Setup connection to S3
+    removeTinyMCE();
     dodgercms.s3.init();
     rebuildTree();
-    setEvents();
 
     //add datatypes to the main menu
     $('#new-entry-data-types').empty();
@@ -941,6 +942,12 @@ $(function() {
               $(this).val($(this).data('value'));
             }
           });
+
+          //hide the delete button
+          $('#delete-entry').hide();
+
+          //scroll window to top
+          $(window).scrollTop(0);
         }
       });
     });
@@ -1180,6 +1187,7 @@ $(function() {
   function setEvents(){
     // Event listenter for the new entry button
     $('body').delegate('#new-entry-data-types a', 'click', function(event) {
+      event.preventDefault();
       newEntry(null, $(this).data('value'));
       $('#new-entry-data-types').fadeOut();
     });
@@ -1277,6 +1285,8 @@ $(function() {
                 errorHandler(err);
               } else {
                 loadKeyContent(key, data);
+                //show the delete button
+                $('#delete-entry').show();
               }
             });
           } else {
@@ -1289,6 +1299,7 @@ $(function() {
 
       // Event listenter for the edit entry button
       $(document).on('click', '#edit-entry', function(event) {
+        event.preventDefault();
         var key = $(this).data('key');
 
         if (typeof key === 'undefined') {
