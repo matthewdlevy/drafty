@@ -1,9 +1,9 @@
 {
   "name": "drafty",
-  "homepage": "https://bitbucket.org/matthewdlevy/drafty/overview",
-  "version": "0.0.2",
-  "description": "Forked version of dodgercms to add WYSIWYG and other publishing niceties.",
-  "keywords": ["markdown", "cms", "amazon", "s3"],
+  "homepage": "http://www.draftycms.com",
+  "version": "1.0",
+  "description": "S3 static sites, with a WordPress feel",
+  "keywords": ["markdown", "cms", "amazon", "s3", "wysiwyg"],
   "license" : "MIT",
   "author": {
     "name": "Matthew Levy",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org/matthewdlevy/drafty.git"
+    "url": "git@github.com/matthewdlevy/drafty.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
