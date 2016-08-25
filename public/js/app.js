@@ -198,11 +198,15 @@ $(function() {
           var $tree = $('#tree');
           var tree = [];
 
+
+          //get the name of the site for nicer looking structure
+          var currentSite = _.findWhere(SITES,{markdown_bucket: DATA_BUCKET});
+
           // Push the bucket onto the array as the root
           tree.push({
             'id': 's3--root',
             'parent': '#',
-            'text': '<span class="bucket">' + DATA_BUCKET + '</span>',
+            'text': '<span class="bucket">' + currentSite.name + '</span>',
             'type': 'folder',
             'a_attr': {
               'title': DATA_BUCKET
