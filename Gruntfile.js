@@ -144,7 +144,7 @@ module.exports = function(grunt) {
 
   // Deploy template files to the sites for use of CSS, images, etc.
   // specify the site when executing the task:
-  //   $ grunt deploy-templates --site vb-dev-site
+  //   $ grunt deploy-templates --site your-site-bucket
   // If you wish to use this, the CMS admin IAM role will need access to the site buckets.
   grunt.registerTask('deploy-templates', ['default', 'aws_s3:templates']);
 };
