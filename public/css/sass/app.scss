@@ -120,4 +120,8 @@ $breakpoints-xxxl: 1800px;
   display: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 @import "_responsive";

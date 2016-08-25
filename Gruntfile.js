@@ -64,9 +64,9 @@ module.exports = function(grunt) {
             },
             {
                 expand: true,
-                cwd: 'templates/vb-app-ui/css/sass',
+                cwd: 'templates/css/sass',
                 src: ['**/*.{scss,sass}'],
-                dest: 'templates/vb-app-ui/css',
+                dest: 'templates/css',
                 ext: '.css'
             }]
         }

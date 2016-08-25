@@ -108,6 +108,10 @@ label.pure-button {
   display: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 @media (max-width: 768px) {
   #nav .nav > li {
     display: inline-block;
