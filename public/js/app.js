@@ -1119,8 +1119,8 @@ $(function() {
     tinymce.init({
       selector: '.wysiwyg',
       height: 300,
-      plugins: 'code table',
-      removed_menuitems: 'newdocument'
+      plugins: 'code table link',
+      menubar: 'edit insert view format table tools'
     });
   }
 
