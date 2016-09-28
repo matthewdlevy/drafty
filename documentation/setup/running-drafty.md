@@ -38,6 +38,9 @@ Drafty supports publishing and management of multiple destination sites. To add 
 ## Modifying Templates (and other edits)
 Drafty is built as a Node.js/Grunt application. You will need to install [NodeJS](https://nodejs.org/en/download/) and [Grunt](http://gruntjs.com/installing-grunt)
 
+You may need to install Grunt Command Line tools globally:
+`$ sudo npm install -g grunt-cli`
+
 From your Drafty directory get all of the dependencies by running
 `$ npm install `
 
